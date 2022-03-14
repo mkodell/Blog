@@ -18,7 +18,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{-- TODO: make dynamic --}}
+                                            {{-- TODO: make dynamic + add a draft feature --}}
                                             <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 Published
                                             </span>
