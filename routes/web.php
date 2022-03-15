@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
@@ -26,3 +27,7 @@ Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');
 });
 
+Route::get('admin/categories', [AdminCategoryController::class, 'index'])->middleware('can:admin');
+Route::delete('admin/categories/{category}', [AdminCategoryController::class, 'destroy'])->middleware('can:admin');
+// Route::get('admin/categories', [AdminCategoryController::class, 'create'])->middleware('can:admin');
+// Route::post('admin/categories/{category}', [AdminCategoryController::class, 'store'])->middleware('can:admin');
