@@ -29,5 +29,5 @@ Route::middleware('can:admin')->group(function () {
 
 Route::get('admin/categories', [AdminCategoryController::class, 'index'])->middleware('can:admin');
 Route::delete('admin/categories/{category}', [AdminCategoryController::class, 'destroy'])->middleware('can:admin');
-// Route::get('admin/categories', [AdminCategoryController::class, 'create'])->middleware('can:admin');
-// Route::post('admin/categories/{category}', [AdminCategoryController::class, 'store'])->middleware('can:admin');
+Route::get('admin/categories/create', [AdminCategoryController::class, 'create'])->middleware('can:admin');
+Route::post('admin/categories', [AdminCategoryController::class, 'store'])->middleware('can:admin');

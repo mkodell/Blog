@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
 {
@@ -19,5 +20,29 @@ class AdminCategoryController extends Controller
         $category->delete();
 
         return redirect()->back()->with('success', 'Category Deleted!');
+    }
+
+    public function create()
+    {
+        return view('admin.categories.create');
+    }
+
+    public function store()
+    {
+        $attributes = $this->validateCategory();
+
+        Category::create($attributes);
+
+        return redirect('/admin/categories');
+    }
+
+    protected function validateCategory(?Category $category = null): array
+    {
+        $category ??= new Category();
+
+        return request()->validate([
+            'name' => 'required',
+            'slug' => ['required', Rule::unique('categories', 'slug')->ignore($category)],
+        ]);
     }
 }
