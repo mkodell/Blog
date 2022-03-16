@@ -16,7 +16,6 @@
             <x-form.textarea name="excerpt">{{ old('excerpt', $post->excerpt) }}</x-form.textarea>
             <x-form.textarea name="body">{{ old('body', $post->body) }}</x-form.textarea>
 
-            {{-- TODO: create a way to add a new category --}}
             <x-form.section>
                 <x-form.label name="category" />
 
@@ -32,7 +31,8 @@
                 <x-form.error name="category" />
             </x-form.section>
 
-            <x-form.button>Publish</x-form.button>
+                <x-form.button>Publish</x-form.button>
+            </div>
         </form>
     </x-setting>
 </x-layout>

@@ -22,10 +22,17 @@ class AdminPostController extends Controller
 
     public function store()
     {
-        $attributes = array_merge($this->validatePost(), [
-            'user_id' => auth()->id(),
-            'thumbnail' => request()->file('thumbnail')->store('thumbnails'),
+        $attributes = request()->validate([
+            'title' => 'required',
+            'thumbnail' => 'required', 'image',
+            'excerpt' => 'required',
+            'slug' => ['required', Rule::unique('posts', 'slug')],
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
+
+        $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Post::create($attributes);
 
@@ -41,7 +48,14 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
-        $attributes = $this->validatePost();
+        $attributes = request()->validate([
+        'title' => 'required',
+        'thumbnail' => 'image',
+        'excerpt' => 'required',
+        'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
+        'body' => 'required',
+        'category_id' => ['required', Rule::exists('categories', 'id')]
+    ]);
 
         if ($attributes['thumbnail'] ?? false)
         {
@@ -60,7 +74,8 @@ class AdminPostController extends Controller
         return redirect()->back()->with('success', 'Post Deleted!');
     }
 
-    protected function validatePost(?Post $post = null): array
+    /* TODO: figure out why this wasn't working */
+    /* protected function validatePost(?Post $post = null): array
     {
         $post ??= new Post();
 
@@ -72,5 +87,5 @@ class AdminPostController extends Controller
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
-    }
+    } */
 }
