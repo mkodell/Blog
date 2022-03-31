@@ -20,7 +20,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                              <div class="text-sm font-medium text-gray-900">
-                                                     Posts: {{ $numOfPosts = $category->posts->count()}}
+                                                 Posts: {{ $numOfPosts = $category->posts->count()}}
                                             </div>
                                         </div>
                                     </td>
@@ -29,7 +29,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="text-xs text-gray-400">Delete</button>
+                                            <button class="text-xs text-red-400">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
