@@ -16,20 +16,7 @@
             <x-form.textarea name="excerpt">{{ old('excerpt', $post->excerpt) }}</x-form.textarea>
             <x-form.textarea name="body">{{ old('body', $post->body) }}</x-form.textarea>
 
-            <x-form.section>
-                <x-form.label name="category" />
-
-                <select name="category_id" id="category_id">
-                    @foreach (\App\Models\Category::all() as $category)
-                        <option
-                            value="{{ $category->id }}"
-                            {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
-                        >{{ ucwords($category->name) }}</option>
-                    @endforeach
-                </select>
-
-                <x-form.error name="category" />
-            </x-form.section>
+            <x-form.category-dropdown />
 
             <x-form.section>
                 <x-form.label name="status" />
