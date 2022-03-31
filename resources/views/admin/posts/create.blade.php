@@ -24,6 +24,21 @@
                 <x-form.error name="category" />
             </x-form.section>
 
+            <x-form.section>
+                <x-form.label name="status" />
+
+                <select name="status" id="status">
+                    <option value="draft">
+                        Draft
+                    </option>
+                    <option value="published">
+                        Published
+                    </option>
+                </select>
+
+                <x-form.error name="status" />
+            </x-form.section>
+
             <x-form.button>Publish</x-form.button>
 
         </form>

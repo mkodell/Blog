@@ -23,10 +23,15 @@
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{-- TODO: make dynamic + add a draft feature --}}
-                                            <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Published
-                                            </span>
+                                            @if ($post->status == 'draft')
+                                                <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                    Draft
+                                                </span>
+                                            @else
+                                                <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Published
+                                                </span>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="/admin/posts/{{ $post->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
@@ -27,7 +28,8 @@ class AdminPostController extends Controller
             'excerpt' => 'required',
             'slug' => ['required', Rule::unique('posts', 'slug')],
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'status' => 'required',
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -45,16 +47,17 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function update(Post $post)
+    public function update(Post $post, Request $request)
     {
         $attributes = request()->validate([
-        'title' => 'required',
-        'thumbnail' => 'image',
-        'excerpt' => 'required',
-        'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
-        'body' => 'required',
-        'category_id' => ['required', Rule::exists('categories', 'id')]
-    ]);
+            'title' => 'required',
+            'thumbnail' => 'image',
+            'excerpt' => 'required',
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'status' => 'required',
+        ]);
 
         if ($attributes['thumbnail'] ?? false)
         {
