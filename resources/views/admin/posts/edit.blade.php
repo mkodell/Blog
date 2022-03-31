@@ -31,7 +31,6 @@
                 <x-form.error name="category" />
             </x-form.section>
 
-            {{-- TODO: make dynamic --}}
             <x-form.section>
                 <x-form.label name="status" />
 
