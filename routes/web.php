@@ -34,3 +34,4 @@ Route::get('admin/categories', [AdminCategoryController::class, 'index'])->middl
 Route::delete('admin/categories/{category}', [AdminCategoryController::class, 'destroy'])->middleware('can:admin');
 Route::get('admin/categories/create', [AdminCategoryController::class, 'create'])->middleware('can:admin');
 Route::post('admin/categories', [AdminCategoryController::class, 'store'])->middleware('can:admin');
+
