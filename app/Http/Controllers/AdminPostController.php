@@ -32,6 +32,10 @@ class AdminPostController extends Controller
             'status' => 'required',
         ]);
 
+        if ($attributes['status'] == 'published') {
+            $attributes['published_at'] = now();
+        }
+
         $attributes['user_id'] = auth()->id();
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
@@ -59,9 +63,12 @@ class AdminPostController extends Controller
             'status' => 'required',
         ]);
 
-        if ($attributes['thumbnail'] ?? false)
-        {
+        if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        if ($attributes['status'] == 'published') {
+            $attributes['published_at'] = now();
         }
 
         $post->update($attributes);
