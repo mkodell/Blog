@@ -16,6 +16,3 @@
 
         - name: Yarn Install
           run: yarn install --network-concurrency 1
-
-        - name: Update Composer
-          run: composer update
