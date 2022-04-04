@@ -1,22 +1,21 @@
 name: run
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
     jobs:
-      assets:
+      build:
         runs-on: ubuntu-latest
+        name: Testing
 
         steps:
           - uses: action/checkout@v2
 
-          - name: setup node
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
               node-version: 16
-              cache: 'yarn install'
+              cache: 'yarn'
 
-          - name: Install dependencies
+          - name: Install dependencies - yarn
             run: yarn install --network-concurrency 1
 
+          - name: Install dependencies - composer
+            run: composer update
