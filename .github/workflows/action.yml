@@ -1,0 +1,22 @@
+name: run
+on:
+  push:
+    branches:
+      - master
+
+    jobs:
+      assets:
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: action/checkout@v2
+
+          - name: setup node
+            uses: actions/setup-node@v2
+            with:
+              node-version: 16
+              cache: 'yarn install'
+
+          - name: Install dependencies
+            run: yarn install --network-concurrency 1
+
