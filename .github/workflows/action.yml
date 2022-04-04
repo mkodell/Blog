@@ -1,21 +1,21 @@
-name: run
-on: [push]
+  name: Node CI
+  on: [push]
 
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        name: Testing
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      name: Testing
 
-        steps:
-          - uses: action/checkout@v2
+      steps:
+        - uses: actions/checkout@v2
 
-          - uses: actions/setup-node@v2
-            with:
-              node-version: 16
-              cache: 'yarn'
+        - uses: actions/setup-node@v2
+          with:
+            node-version: 16
+            cache: 'yarn'
 
-          - name: Install dependencies - yarn
-            run: yarn install --network-concurrency 1
+        - name: Yarn Install
+          run: yarn install --network-concurrency 1
 
-          - name: Install dependencies - composer
-            run: composer update
+        - name: Update Composer
+          run: composer update
