@@ -7,8 +7,8 @@
               name="{{ $name }}"
               id="{{ $name }}"
               required
-              {{ $attributes }}
-    >{{ $slot ?? old($name) }}</textarea>
+              {{ $attributes(['value' => old($name)]) }}
+    >{{ old($name) }}</textarea>
 
     <x-form.error name="{{ $name }}" />
 </x-form.section>

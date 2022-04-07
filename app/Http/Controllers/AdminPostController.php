@@ -41,7 +41,7 @@ class AdminPostController extends Controller
 
         Post::create($attributes);
 
-        return redirect('/');
+        return redirect('/admin/posts')->with('success', 'Post Created!');
     }
 
     public function edit(Post $post)
@@ -73,14 +73,14 @@ class AdminPostController extends Controller
 
         $post->update($attributes);
 
-        return redirect()->back()->with('success', 'Post Updated!');
+        return redirect('/admin/posts')->with('success', 'Post Updated!');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->back()->with('success', 'Post Deleted!');
+        return redirect('/admin/posts')->with('success', 'Post Deleted!');
     }
 
     /* TODO: figure out why this wasn't working */
