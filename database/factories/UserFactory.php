@@ -27,7 +27,6 @@ class UserFactory extends Factory
         ];
     }
 
-    /* TODO: create an avatar feature - which can changes comment + author avatar picture. */
     /* TODO: normal user profile page - can select subscription options - change personal info (user/pass) */
 
     /**
