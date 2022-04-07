@@ -28,7 +28,7 @@
             @else
                 <x-dropdown>
                     <x-slot name="trigger">
-                        <button class="text-xs font-bold uppercase">Welcome Back, {{ auth()->user()->name }}!</button>
+                        <button class="text-xs font-bold uppercase">Welcome Back, {{ auth()->user()->username }}!</button>
                     </x-slot>
 
                     <x-dropdown-item href="/" :active="request()->routeIs('home')">Home</x-dropdown-item>
