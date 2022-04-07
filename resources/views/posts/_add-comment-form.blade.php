@@ -5,11 +5,12 @@
 
             <header class="flex items-center">
                 <img
-                    src="https://i.pravatar.cc/60?u={{ auth()->id() }}"
-                    alt="user avatar"
+                    src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                    alt="User avatar"
                     width="40"
                     height="40"
-                    class="rounded-full">
+                    class="rounded-full"
+                >
 
                 <h2 class="ml-4">Want to participate?</h2>
             </header>

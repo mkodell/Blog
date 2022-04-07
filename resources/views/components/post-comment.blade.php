@@ -4,11 +4,12 @@
     <article class="flex space-x-4">
         <div class="flex-shrink-0 ">
             <img
-                src="https://i.pravatar.cc/60?u={{ $comment->user_id }}"
-                alt="user avatar"
-                width="60"
-                height="60"
-                class="rounded-xl">
+                src="{{ asset('storage/' . $comment->author->avatar) }}"
+                width="40"
+                height="40"
+                class="rounded-full"
+                alt="Author avatar"
+            >
         </div>
 
         <div>
