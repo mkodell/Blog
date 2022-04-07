@@ -14,7 +14,7 @@
                             src="{{ asset('storage/' . $post->author->avatar) }}"
                             width="60"
                             height="60"
-                            class="rounded"
+                            class="rounded-full"
                             alt="Author avatar"
                         >
                         <div class="ml-3 text-left">
