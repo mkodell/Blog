@@ -16,11 +16,13 @@ class RegisterController extends Controller
         $attributes = request()->validate([
             'name' => 'required|max:255',
             'username' => 'required|max:255|min:3|unique:users,username',
+            'avatar' => 'required|image',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|max:255|min:7',
         ]);
 
         $attributes['password'] = bcrypt($attributes['password']);
+        $attributes['avatar'] = request()->file('avatar')->store('avatars');
 
         $user = User::create($attributes);
 
