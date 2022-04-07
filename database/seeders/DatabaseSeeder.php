@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Meredith Odell',
             'username' => 'mkodell',
             'email' => 'meredith.odell@sourcetoad.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'avatar' => 'avatars/Meredith1.jpg',
         ]);
 
         $user = User::factory(2)->create();
