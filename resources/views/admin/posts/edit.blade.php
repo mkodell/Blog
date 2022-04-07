@@ -40,6 +40,9 @@
             </x-form.section>
 
                 <x-form.button>Save</x-form.button>
+
+                {{-- TODO: message pops up if info has been changed, but hasn't been saved and user wants to leave the screen --}}
+
             </div>
         </form>
     </x-setting>
