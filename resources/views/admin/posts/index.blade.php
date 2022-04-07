@@ -53,5 +53,7 @@
             </div>
         </div>
 
+        {{-- TODO: limit this to a certain amount of posts and then paginate from there --}}
+
     </x-setting>
 </x-layout>
