@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
@@ -18,6 +19,10 @@ Route::post('newsletter', NewsletterController::class);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('account/{user:username}', [AccountController::class, 'show'])->middleware('auth');
+Route::get('account/{user:username}/edit', [AccountController::class, 'edit'])->middleware('auth');
+Route::patch('account/{user:username}', [AccountController::class, 'update'])->middleware('auth');
 
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
