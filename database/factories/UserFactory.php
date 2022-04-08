@@ -27,8 +27,6 @@ class UserFactory extends Factory
         ];
     }
 
-    /* TODO: normal user profile page - can select subscription options - change personal info (user/pass) */
-
     /**
      * Indicate that the model's email address should be unverified.
      *

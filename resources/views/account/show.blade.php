@@ -1,4 +1,5 @@
 {{-- TODO: styling can be cleaned up here --}}
+{{-- TODO: subscription information can be selected/edited once the subscription service is further set up --}}
 
 <x-layout>
     <section class="py-8 max-w-2xl mx-auto">
