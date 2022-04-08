@@ -28,9 +28,9 @@ class AccountController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required',
-            'avatar' => 'image',
+            'avatar' => 'image|mimes:jpeg,jpg,png,svg',
             'username' => ['required', Rule::unique('users', 'username')->ignore($user)],
-            'password' => 'required',
+            'password' => '',
             'email' => ['required', Rule::unique('users', 'email')->ignore($user)],
         ]);
 
