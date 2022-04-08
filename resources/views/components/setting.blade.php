@@ -4,6 +4,7 @@
     <h1 class="text-xl font-bold mb-8 pb-2 border-b">{{ $heading }}</h1>
 
     <div class="flex">
+        @admin
         <aside class="w-48 flex-shrink-0">
             <h4 class="font-semibold mb-4">Links</h4>
 
@@ -22,6 +23,7 @@
                 </li>
             </ul>
         </aside>
+        @endadmin
 
         <main class="flex-1">
             <x-panel>

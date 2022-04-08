@@ -1,3 +1,5 @@
+{{-- TODO: styling can be cleaned up here --}}
+
 <x-layout>
     <section class="py-8 max-w-4xl mx-auto">
 

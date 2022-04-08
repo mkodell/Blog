@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AccountController extends Controller
 {
@@ -19,5 +20,23 @@ class AccountController extends Controller
         return view('account.edit', [
             'user' => $user
         ]);
+    }
+
+    public function update(User $user)
+    {
+        $attributes = request()->validate([
+            'name' => 'required',
+            'avatar' => 'image',
+            'username' => ['required', Rule::unique('users', 'username')->ignore($user)],
+            'email' => ['required', Rule::unique('users', 'email')->ignore($user)],
+        ]);
+
+        if ($attributes['avatar'] ?? false) {
+            $attributes['avatar'] = request()->file('avatar')->store('avatar');
+        }
+
+        $user->update($attributes);
+
+        return redirect('/account/' . $user->username)->with('success', 'Account Updated!');
     }
 }
