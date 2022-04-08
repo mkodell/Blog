@@ -1,29 +1,29 @@
 {{-- TODO: styling can be cleaned up here --}}
 
 <x-layout>
-    <section class="py-8 max-w-4xl mx-auto">
+    <section class="py-8 max-w-2xl mx-auto">
 
         <div class="mb-8 pb-2 border-b">
-        <table class="min-w-full divide-y divide-gray-200">
-            <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class=" text-xl font-bold text-gray-900">
-                            <h1 class="text-xl font-bold">User Account</h1>
+            <table class="min-w-full divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="text-xl font-bold text-gray-900">
+                                <h1 class="text-xl font-bold">User Account</h1>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="text-lg font-medium text-gray-900">
-                            <a href="/account/{{ $user->username }}/edit" class="text-blue-500 hover:text-blue-600 text-lg">Edit</a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="text-lg font-medium text-gray-900">
+                                <a href="/account/{{ $user->username }}/edit" class="text-blue-500 hover:text-blue-600 text-lg">Edit</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="flex flex-col">
