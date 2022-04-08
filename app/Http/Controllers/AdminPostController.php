@@ -20,8 +20,6 @@ class AdminPostController extends Controller
         return view('admin.posts.create');
     }
 
-    /* TODO: thumbnail constraint so it doesn't look weird on home screen ? */
-
     public function store()
     {
         $attributes = request()->validate([
