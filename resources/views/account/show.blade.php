@@ -1,6 +1,29 @@
 <x-layout>
     <section class="py-8 max-w-4xl mx-auto">
-        <h1 class="text-xl font-bold mb-8 pb-2 border-b">User Account: {{ $user->username }}</h1>
+
+        <div class="mb-8 pb-2 border-b">
+        <table class="min-w-full divide-y divide-gray-200">
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div class=" text-xl font-bold text-gray-900">
+                            <h1 class="text-xl font-bold">User Account</h1>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div class="text-lg font-medium text-gray-900">
+                            <a href="/account/{{ $user->username }}/edit" class="text-blue-500 hover:text-blue-600 text-lg">Edit</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

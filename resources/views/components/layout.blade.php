@@ -32,12 +32,12 @@
                     </x-slot>
 
                     <x-dropdown-item href="/" :active="request()->routeIs('home')">Home</x-dropdown-item>
-                    <x-dropdown-item href="/account/{{ auth()->user()->username }}" :active="request()->routeIs('/account')">Account</x-dropdown-item>
+                    <x-dropdown-item href="/account/{{ auth()->user()->username }}" :active="request()->is('account/*')">Account</x-dropdown-item>
 
                     @admin
                         <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
                         <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
-                        <x-dropdown-item href="/admin/categories/create" :active="request()->is('admin/posts/create')">New Category</x-dropdown-item>
+                        <x-dropdown-item href="/admin/categories/create" :active="request()->is('admin/categories/create')">New Category</x-dropdown-item>
                     @endadmin
 
                     <x-dropdown-item href="#" active="" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()" >Log Out</x-dropdown-item>
