@@ -10,6 +10,7 @@
                 <x-form.input name="name" :value="old('name', $user->name)"/>
                 <x-form.input name="username" :value="old('username', $user->username)"/>
                 <x-form.input name="email" :value="old('email', $user->email)"/>
+                <x-form.input name="password" type="password" autocorrect="new-password"/>
                 <div class="flex mt-6">
                     <div class="flex-1">
                         <x-form.input name="avatar" type="file" :value="old('avatar', $user->avatar)"/>

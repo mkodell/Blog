@@ -73,6 +73,7 @@
                                             {{ $user->email }}
                                         </span>
                                     </td>
+                                </tr>
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
