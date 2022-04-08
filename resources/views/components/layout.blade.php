@@ -32,6 +32,7 @@
                     </x-slot>
 
                     <x-dropdown-item href="/" :active="request()->routeIs('home')">Home</x-dropdown-item>
+                    <x-dropdown-item href="/account/{{ auth()->user()->username }}" :active="request()->routeIs('/account')">Account</x-dropdown-item>
 
                     @admin
                         <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
