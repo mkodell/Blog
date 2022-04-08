@@ -36,7 +36,7 @@ class AccountController extends Controller
 
         $attributes['password'] = bcrypt($attributes['password']);
         if ($attributes['avatar'] ?? false) {
-            $attributes['avatar'] = request()->file('avatar')->store('avatar');
+            $attributes['avatar'] = request()->file('avatar')->store('avatars');
         }
 
         $user->update($attributes);
