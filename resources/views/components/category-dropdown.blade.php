@@ -16,7 +16,7 @@
 
     <x-dropdown-item
         href="/?{{ http_build_query(request()->except('category', 'page')) }}"
-        active=""
+        :active="!isset($currentCategory)"
     >All</x-dropdown-item>
 
     @foreach ($categories as $category)
