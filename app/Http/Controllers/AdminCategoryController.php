@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
 {
-    public function index()
+    public function index(Post $post)
     {
         return view('admin.categories.index', [
             'categories' => Category::paginate(50),

@@ -20,7 +20,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                              <div class="text-sm font-medium text-gray-900">
-                                                 Posts: {{ $category->posts->count()}}
+                                                 Your Posts: {{ $category->posts->where('user_id', auth()->user()->id)->count()}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                Total Posts: {{ $category->posts->count()}}
                                             </div>
                                         </div>
                                     </td>
