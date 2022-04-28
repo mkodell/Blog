@@ -12,7 +12,7 @@ class AdminPostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'posts' => Post::latest()->where('user_id', auth()->user()->id)->paginate(10)
+            'posts' => Post::latest('updated_at')->where('user_id', auth()->user()->id)->paginate(10)
         ]);
     }
 
@@ -31,11 +31,12 @@ class AdminPostController extends Controller
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'status' => 'required',
+            'updated_at' => now(),
         ]);
 
-        if ($attributes['status'] == 'published') {
+        /* if ($attributes['status'] == 'published') {
             $attributes['published_at'] = now();
-        }
+        } */
 
         $attributes['user_id'] = auth()->id();
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -62,15 +63,16 @@ class AdminPostController extends Controller
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'status' => 'required',
+            'updated_at' => now(),
         ]);
 
         if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
-        if ($attributes['status'] == 'published') {
+        /* if ($attributes['status'] == 'published') {
             $attributes['published_at'] = now();
-        }
+        } */
 
         $post->update($attributes);
 
