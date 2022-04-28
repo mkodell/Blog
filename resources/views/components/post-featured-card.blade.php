@@ -20,9 +20,19 @@
                         </a>
                     </h1>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
-                        Published <time>{{ $post->updated_at->diffForHumans() }}</time>
-                    </span>
+                    {{-- TODO: find a sane way to get "published" vs "updated" to validate correctly
+                           "updated" renders after it has been updated after it was published
+                             "published" renders if it was published on creation instead of being on draft (not updated) --}}
+                    {{-- @if ($post->updated_at != NULL) --}}
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Updated <time>{{ $post->updated_at->diffForHumans() }}</time>
+                        </span>
+                    {{-- @else
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                        </span>
+                    @endif --}}
+
                 </div>
             </header>
 
