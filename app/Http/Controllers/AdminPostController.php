@@ -12,7 +12,11 @@ class AdminPostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'posts' => Post::latest()->where('user_id', auth()->user()->id)->paginate(10)
+            'posts' => Post::
+                with('author', 'category')
+                    ->latest()
+                    ->where('user_id', auth()->user()->id)
+                    ->paginate(10)
         ]);
     }
 

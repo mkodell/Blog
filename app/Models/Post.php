@@ -30,6 +30,8 @@ class Post extends Model
             $query->whereHas('author', fn($query) =>
                 $query->where('username', $author))
         );
+
+        $query->where('status', 'published');
     }
 
     public function getRouteKeyName()
