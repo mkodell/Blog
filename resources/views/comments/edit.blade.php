@@ -22,12 +22,8 @@
                     <textarea
                         name="body"
                         class="w-full text-sm"
-                        cols="30"
                         rows="5"
-                        required
-                    >
-                        {{ $comment->body }}
-                    </textarea>
+                    >{{ $comment->body }}</textarea>
 
                     <x-form.error name="body" />
                 </div>
