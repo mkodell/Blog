@@ -69,10 +69,9 @@
 
                         <x-form.button>Save</x-form.button>
 
-            {{-- TODO: message pops up if info has been changed, but hasn't been saved and user wants to leave the screen --}}
+                        {{-- TODO: message pops up if info has been changed, but hasn't been saved and user wants to leave the screen --}}
 
-        </div>
-        </form>
+                    </form>
                 </x-panel>
             </main>
         </div>
