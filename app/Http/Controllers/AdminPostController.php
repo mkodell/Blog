@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
@@ -56,7 +54,7 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function update(Post $post, Request $request)
+    public function update(Post $post)
     {
         $attributes = request()->validate([
             'title' => 'required',
