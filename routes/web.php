@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -14,6 +15,10 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+
+Route::get('comments/{comment:id}/edit', [CommentController::class, 'edit']);
+Route::patch('comments/{comment:id}', [CommentController::class, 'update']);
+Route::delete('comments/{comment:id}', [CommentController::class, 'destroy']);
 
 Route::post('newsletter', NewsletterController::class);
 
