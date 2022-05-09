@@ -8,11 +8,11 @@ use Illuminate\Validation\Rule;
 
 class AdminCategoryController extends Controller
 {
-    public function index(Post $post)
+    public function index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::paginate(50),
-            'posts' => Post::paginate(50),
+            'categories' => Category::with('posts')->paginate(10),
+            'posts' => Post::with('author'),
         ]);
     }
 
