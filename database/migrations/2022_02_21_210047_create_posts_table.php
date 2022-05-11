@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('updated')->nullable();
         });
     }
 

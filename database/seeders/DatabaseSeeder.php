@@ -56,7 +56,9 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'This is the first factory generated post',
             'body' => 'This is the first factory generated post since adding the thumbnail and status feature.',
             'status' => 'draft',
-            'updated_at' => now(),
+            'created_at' => now(),
+            'updated' => NULL,
+            'published_at' => NULL,
         ]);
 
         $post = Post::factory()->create([
@@ -68,7 +70,9 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'This is the second factory generated post',
             'body' => 'This is the second factory generated post since adding the thumbnail and status feature.',
             'status' => 'published',
-            'updated_at' => now(),
+            'published_at' => now(),
+            'created_at' => now(),
+            'updated' => NULL,
         ]);
     }
 }
