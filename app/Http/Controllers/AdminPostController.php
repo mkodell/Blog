@@ -10,7 +10,11 @@ class AdminPostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-            'posts' => Post::latest('updated')->where('user_id', auth()->user()->id)->paginate(10)
+            'posts' => Post::
+                with('author', 'category')
+                    ->latest('updated')
+                    ->where('user_id', auth()->user()->id)
+                    ->paginate(10)
         ]);
     }
 
@@ -84,19 +88,6 @@ class AdminPostController extends Controller
         } else {
             $attributes['updated'] = NULL;
         }
-
-        /* if (($attributes['status'] == 'published') && (request()->old('status') == 'draft')) {
-            $attributes['published_at'] = now();
-            $attributes['updated'] = NULL;
-        }
-
-        if (($attributes['status'] == 'published') && (request()->old('status') == 'published')) {
-            $attributes['updated'] = now();
-        }
-
-        if ($attributes['status'] == 'draft') {
-            $attributes['updated'] = NULL;
-        } */
 
         $post->update($attributes);
 
