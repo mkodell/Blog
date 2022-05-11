@@ -20,15 +20,15 @@
                         </a>
                     </h1>
 
-                    {{-- @if ($post->updated_at != NULL) --}}
+                    @if ($post->updated == NULL)
                         <span class="mt-2 block text-gray-400 text-xs">
-                            Updated <time>{{ $post->updated_at->diffForHumans() }}</time>
+                            Published <time>{{ $post->published_at->diffForHumans() }}</time>
                         </span>
-                    {{-- @else
+                    @else
                         <span class="mt-2 block text-gray-400 text-xs">
-                            Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                            Updated <time>{{ $post->updated->diffForHumans() }}</time>
                         </span>
-                    @endif --}}
+                    @endif
 
                 </div>
             </header>

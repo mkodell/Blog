@@ -5,15 +5,15 @@
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="thumbnail" class="rounded-xl">
 
-                    {{-- @if ($post->updated_at != NULL) --}}
+                    @if ($post->updated == NULL)
                         <p class="mt-4 block text-gray-400 text-xs">
-                            Updated <time>{{ $post->updated_at->diffForHumans() }}</time>
+                            Published <time>{{ $post->published_at->diffForHumans() }}</time>
                         </p>
-                    {{-- @else
+                    @else
                         <p class="mt-4 block text-gray-400 text-xs">
-                            Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                            Updated <time>{{ $post->updated->diffForHumans() }}</time>
                         </p>
-                    @endif --}}
+                    @endif
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img
