@@ -9,6 +9,11 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $dates = [
+        'posted',
+        'updated',
+    ];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
