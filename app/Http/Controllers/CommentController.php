@@ -17,11 +17,12 @@ class CommentController extends Controller
         $attributes = request()->validate([
             'body' => 'required',
             'updated_at' => now(),
+            'updated' => now(),
         ]);
 
         $comment->update($attributes);
 
-        return back()->with('success', 'Comment Updated!');
+        return redirect('/')->with('success', 'Comment Updated!');
     }
 
     public function destroy(Comment $comment) {
