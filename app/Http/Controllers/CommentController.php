@@ -16,9 +16,10 @@ class CommentController extends Controller
     public function update(Comment $comment) {
         $attributes = request()->validate([
             'body' => 'required',
-            'updated_at' => now(),
-            'updated' => now(),
         ]);
+
+        $attributes['updated_at'] = now();
+        $attributes['updated'] = now();
 
         $comment->update($attributes);
 

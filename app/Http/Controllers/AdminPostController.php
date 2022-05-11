@@ -33,7 +33,6 @@ class AdminPostController extends Controller
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'status' => 'required',
-            'updated' => now(),
         ]);
 
         if ($attributes['status'] == 'draft') {
