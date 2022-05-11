@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
 
         $comment = Comment::factory()->create([
             'post_id' => '2',
-            'user_id' => '1',
+            'user_id' => '2',
             'body' => 'Hello, hello, hello, everyone!',
             'created_at' => now()->subMinutes(55),
             'posted' => now()->subMinutes(55),
@@ -86,8 +86,8 @@ class DatabaseSeeder extends Seeder
 
         $comment = Comment::factory()->create([
             'post_id' => '2',
-            'user_id' => '2',
-            'body' => 'Hello, mkodell! I\'m a huge fan!',
+            'user_id' => '1',
+            'body' => 'Hello, janed! I\'m a huge fan!',
             'created_at' => now()->subMinutes(50),
             'posted' => now()->subMinutes(50),
             'updated' => now(),
