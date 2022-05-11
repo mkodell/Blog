@@ -23,8 +23,10 @@ return new class extends Migration
             $table->text('excerpt');
             $table->text('body');
             $table->string('status');
-            $table->timestamps();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('updated')->nullable();
         });
     }
 

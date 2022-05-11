@@ -20,9 +20,16 @@
                         </a>
                     </h1>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
-                           Published <time>{{ $post->updated_at->diffForHumans() }}</time>
-                    </span>
+                    @if ($post->updated == NULL)
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Published <time>{{ $post->published_at->diffForHumans() }}</time>
+                        </span>
+                    @else
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Updated <time>{{ $post->updated->diffForHumans() }}</time>
+                        </span>
+                    @endif
+
                 </div>
             </header>
 

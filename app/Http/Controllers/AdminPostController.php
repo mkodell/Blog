@@ -12,7 +12,7 @@ class AdminPostController extends Controller
         return view('admin.posts.index', [
             'posts' => Post::
                 with('author', 'category')
-                    ->latest()
+                    ->latest('updated_at')
                     ->where('user_id', auth()->user()->id)
                     ->paginate(10)
         ]);
@@ -33,10 +33,18 @@ class AdminPostController extends Controller
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'status' => 'required',
+            'updated' => now(),
         ]);
 
+        if ($attributes['status'] == 'draft') {
+            $attributes['created_at'] = now();
+            $attributes['updated'] = NULL;
+        }
+
         if ($attributes['status'] == 'published') {
+            $attributes['created_at'] = now();
             $attributes['published_at'] = now();
+            $attributes['updated'] = NULL;
         }
 
         $attributes['user_id'] = auth()->id();
@@ -71,7 +79,14 @@ class AdminPostController extends Controller
         }
 
         if ($attributes['status'] == 'published') {
-            $attributes['published_at'] = now();
+            if ($post->status == 'published') {
+                $attributes['updated'] = now();
+            } else {
+                $attributes['published_at'] = now();
+                $attributes['updated'] = NULL;
+            }
+        } else {
+            $attributes['updated'] = NULL;
         }
 
         $post->update($attributes);

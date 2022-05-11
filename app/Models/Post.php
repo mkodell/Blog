@@ -11,6 +11,11 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = [
+        'published_at',
+        'updated',
+    ];
+
     protected $with = ['category', 'author'];
 
     public function scopeFilter($query, array $filters)
