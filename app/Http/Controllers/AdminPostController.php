@@ -12,7 +12,7 @@ class AdminPostController extends Controller
         return view('admin.posts.index', [
             'posts' => Post::
                 with('author', 'category')
-                    ->latest('updated')
+                    ->latest('updated_at')
                     ->where('user_id', auth()->user()->id)
                     ->paginate(10)
         ]);
