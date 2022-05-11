@@ -15,10 +15,17 @@
         <div>
             <header class="mb-4">
                 <h3 class="font-bold">{{ $comment->author->username }}</h3>
-                {{-- TODO: same as published vs updated for posts --}}
-                <p class="text-xs">
-                    Posted <time>{{ $comment->created_at->format("F j, Y, g:i") }}</time>
-                </p>
+
+                @if ($comment->updated == NULL)
+                    <p class="text-xs">
+                        Posted <time>{{ $comment->posted->format("F j, Y, g:i") }}</time>
+                    </p>
+                @else
+                    <p class="text-xs">
+                        Updated <time>{{ $comment->updated->format("F j, Y, g:i") }}</time>
+                    </p>
+                @endif
+
             </header>
         </div>
         <div>

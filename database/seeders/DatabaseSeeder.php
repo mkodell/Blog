@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -70,9 +71,26 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'This is the second factory generated post',
             'body' => 'This is the second factory generated post since adding the thumbnail and status feature.',
             'status' => 'published',
-            'published_at' => now(),
-            'created_at' => now(),
+            'published_at' => now()->subHour(1),
+            'created_at' => now()->subHour(1),
             'updated' => NULL,
+        ]);
+
+        $comment = Comment::factory()->create([
+            'post_id' => '2',
+            'user_id' => '2',
+            'body' => 'Hello, hello, hello, everyone!',
+            'created_at' => now()->subMinutes(55),
+            'posted' => now()->subMinutes(55),
+        ]);
+
+        $comment = Comment::factory()->create([
+            'post_id' => '2',
+            'user_id' => '1',
+            'body' => 'Hello, janed! I\'m a huge fan!',
+            'created_at' => now()->subMinutes(50),
+            'posted' => now()->subMinutes(50),
+            'updated' => now(),
         ]);
     }
 }
