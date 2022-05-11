@@ -1,5 +1,3 @@
-{{-- TODO: Add in ability to edit comments? --}}
-
 @auth
     <x-panel>
         <form method="POST" action="/posts/{{ $post->slug }}/comments">

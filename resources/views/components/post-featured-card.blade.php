@@ -20,9 +20,6 @@
                         </a>
                     </h1>
 
-                    {{-- TODO: find a sane way to get "published" vs "updated" to validate correctly
-                           "updated" renders after it has been updated after it was published
-                             "published" renders if it was published on creation instead of being on draft (not updated) --}}
                     @if ($post->updated == NULL)
                         <span class="mt-2 block text-gray-400 text-xs">
                             Published <time>{{ $post->published_at->diffForHumans() }}</time>
