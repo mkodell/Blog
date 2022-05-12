@@ -1,14 +1,10 @@
 <x-layout>
-    {{-- TODO: find a way to get this back to using <x-setting /> --}}
-
     <section class="py-8 max-w-4xl mx-auto">
         <h1 class="text-xl font-bold mb-8 pb-2 border-b">Edit Post: {{ $post->title }}</h1>
 
         <div class="flex">
-            @admin
             <aside class="w-48 flex-shrink-0">
                 <h4 class="font-semibold mb-4">Links</h4>
-
                 <ul>
                     <li>
                         <a href="/admin/posts" class="{{ request()->is('admin/posts') ? 'text-blue-500' : ''}} ">All Posts</a>
@@ -24,7 +20,6 @@
                     </li>
                 </ul>
             </aside>
-            @endadmin
 
             <main class="flex-1">
                 <x-panel>
