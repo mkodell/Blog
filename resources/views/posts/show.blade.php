@@ -4,14 +4,19 @@
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="thumbnail" class="rounded-xl">
-
-                    @if ($post->updated == NULL)
-                        <p class="mt-4 block text-gray-400 text-xs">
-                            Published <time>{{ $post->published_at->diffForHumans() }}</time>
-                        </p>
+                    @if ($post->status == 'published')
+                        @if ($post->updated == NULL)
+                            <p class="mt-4 block text-gray-400 text-xs">
+                                Published <time>{{ $post->published_at->diffForHumans() }}</time>
+                            </p>
+                        @else
+                            <p class="mt-4 block text-gray-400 text-xs">
+                                Updated <time>{{ $post->updated->diffForHumans() }}</time>
+                            </p>
+                        @endif
                     @else
                         <p class="mt-4 block text-gray-400 text-xs">
-                            Updated <time>{{ $post->updated->diffForHumans() }}</time>
+                            Not published yet
                         </p>
                     @endif
 
@@ -62,13 +67,15 @@
                     </div>
                 </div>
 
-                <section class="col-span-8 col-start-5 mt-10 space-y-6">
-                    @include ('posts._add-comment-form')
+                @if ($post->status == 'published')
+                    <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                        @include ('posts._add-comment-form')
 
-                    @foreach ($post->comments as $comment)
-                        <x-post-comment :comment="$comment" />
-                    @endforeach
-                </section>
+                        @foreach ($post->comments as $comment)
+                            <x-post-comment :comment="$comment" />
+                        @endforeach
+                    </section>
+                @endif
             </article>
         </main>
     </section>
