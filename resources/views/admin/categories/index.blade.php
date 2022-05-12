@@ -19,15 +19,22 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                Your Drafts: {{ $category->posts->where('user_id', auth()->user()->id)->where('status', 'draft')->count()}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
                                              <div class="text-sm font-medium text-gray-900">
-                                                 Your Posts: {{ $category->posts->where('user_id', auth()->user()->id)->count()}}
+                                                 You Published: {{ $category->posts->where('user_id', auth()->user()->id)->where('status', 'published')->count()}}
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                Total Posts: {{ $category->posts->count()}}
+                                                Total Published: {{ $category->posts->where('status', 'published')->count()}}
                                             </div>
                                         </div>
                                     </td>
