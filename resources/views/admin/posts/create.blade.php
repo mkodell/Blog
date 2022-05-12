@@ -9,6 +9,7 @@
             <x-form.textarea name="excerpt"/>
             <x-form.textarea name="body"/>
 
+            {{-- TODO: is there a way to also add a new category asynchronously --}}
             <x-form.category-dropdown />
 
             <x-form.section>
