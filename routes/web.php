@@ -16,7 +16,6 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
-Route::get('comments/{comment:id}/edit', [CommentController::class, 'edit']);
 Route::patch('comments/{comment:id}', [CommentController::class, 'update']);
 Route::delete('comments/{comment:id}', [CommentController::class, 'destroy']);
 

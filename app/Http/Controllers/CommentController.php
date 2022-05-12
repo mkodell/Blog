@@ -7,12 +7,6 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    public function edit(Comment $comment) {
-        return view('comments.edit', [
-            'comment' => $comment,
-        ]);
-    }
-
     public function update(Comment $comment) {
         $attributes = request()->validate([
             'body' => 'required',
@@ -23,7 +17,7 @@ class CommentController extends Controller
 
         $comment->update($attributes);
 
-        return redirect('/')->with('success', 'Comment Updated!');
+        return back()->with('success', 'Comment Updated!');
     }
 
     public function destroy(Comment $comment) {

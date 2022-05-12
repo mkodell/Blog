@@ -3,7 +3,6 @@
 
 <x-layout>
     <section class="py-8 max-w-2xl mx-auto">
-
         <div class="mb-8 pb-2 border-b">
             <table class="min-w-full divide-y divide-gray-200">
                 <tbody class="bg-white divide-y divide-gray-200">
