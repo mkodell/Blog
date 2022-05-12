@@ -23,17 +23,9 @@ class AdminPostController extends Controller
         return view('admin.posts.create');
     }
 
-    public function store()
+    public function store(Post $post)
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'thumbnail' => 'required|image|mimes:jpeg,jpg,png,svg',
-            'excerpt' => 'required',
-            'slug' => ['required', Rule::unique('posts', 'slug')],
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
-            'status' => 'required',
-        ]);
+        $attributes = $this->validatePost($post);
 
         if ($attributes['status'] == 'draft') {
             $attributes['created_at'] = now();
@@ -63,15 +55,7 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'thumbnail' => 'image',
-            'excerpt' => 'required',
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
-            'status' => 'required',
-        ]);
+        $attributes = $this->validatePost($post);
 
         if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -100,18 +84,18 @@ class AdminPostController extends Controller
         return redirect('/admin/posts')->with('success', 'Post Deleted!');
     }
 
-    /* TODO: figure out why this wasn't working */
-    /* protected function validatePost(?Post $post = null): array
+    protected function validatePost(?Post $post = null): array
     {
         $post ??= new Post();
 
         return request()->validate([
             'title' => 'required',
-            'thumbnail' => $post->exists ? ['image'] : ['required', 'image'],
+            'thumbnail' => $post->exists ? 'image|mimes:jpeg,jpg,png,svg' : 'required|image|mimes:jpeg,jpg,png,svg',
             'excerpt' => 'required',
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
+            'slug' => $post->exists ? ['required', Rule::unique('posts', 'slug')->ignore($post)] : ['required', Rule::unique('posts', 'slug')],
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'status' => 'required'
         ]);
-    } */
+    }
 }
