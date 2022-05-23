@@ -75,6 +75,11 @@
                     {{ $comment->body }}
                 </p>
             @endif
+
+        @else
+            <p>
+                {{ $comment->body }}
+            </p>
         @endauth
     </div>
 </x-panel>
