@@ -28,7 +28,7 @@ class Post extends Model
 
         $query->when($filters['category'] ?? false, fn($query, $category) =>
             $query->whereHas('category', fn($query) =>
-                $query->where('slug', $category))
+                $query->where('name', $category))
         );
 
         $query->when($filters['author'] ?? false, fn($query, $author) =>

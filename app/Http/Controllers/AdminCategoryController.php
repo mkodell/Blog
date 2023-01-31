@@ -42,8 +42,7 @@ class AdminCategoryController extends Controller
         $category ??= new Category();
 
         return request()->validate([
-            'name' => 'required',
-            'slug' => ['required', Rule::unique('categories', 'slug')->ignore($category)],
+            'name' => ['required', Rule::unique('categories', 'name')->ignore($category)],
         ]);
     }
 }

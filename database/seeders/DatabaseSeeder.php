@@ -35,17 +35,14 @@ class DatabaseSeeder extends Seeder
 
         $category = Category::factory()->create([
             'name' => 'Work',
-            'slug' => 'work',
         ]);
 
         $category = Category::factory()->create([
             'name' => 'Life',
-            'slug' => 'life',
         ]);
 
         $category = Category::factory()->create([
             'name' => 'Hobby',
-            'slug' => 'hobby',
         ]);
 
         $post = Post::factory()->create([
