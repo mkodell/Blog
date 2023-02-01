@@ -35,24 +35,20 @@ class DatabaseSeeder extends Seeder
 
         $category = Category::factory()->create([
             'name' => 'Work',
-            'slug' => 'work',
         ]);
 
         $category = Category::factory()->create([
             'name' => 'Life',
-            'slug' => 'life',
         ]);
 
         $category = Category::factory()->create([
             'name' => 'Hobby',
-            'slug' => 'hobby',
         ]);
 
         $post = Post::factory()->create([
             'user_id' => '1',
             'category_id' => '1',
-            'slug' => 'test-1',
-            'title' => 'Test #1',
+            'title' => 'Test 1',
             'thumbnail' => 'thumbnails/background.jpeg',
             'excerpt' => 'This is the first factory generated post',
             'body' => 'This is the first factory generated post since adding the thumbnail and status feature.',
@@ -65,8 +61,7 @@ class DatabaseSeeder extends Seeder
         $post = Post::factory()->create([
             'user_id' => '2',
             'category_id' => '2',
-            'slug' => 'test-2',
-            'title' => 'Test #2',
+            'title' => 'Test 2',
             'thumbnail' => 'thumbnails/screenshot.png',
             'excerpt' => 'This is the second factory generated post',
             'body' => 'This is the second factory generated post since adding the thumbnail and status feature.',

@@ -6,7 +6,7 @@
             <option
                 value="{{ $category->id }}"
                 {{ old('category_id') == $category->id ? 'selected' : '' }}
-            >{{ ucwords($category->name) }}</option>
+            >{{ $category->name }}</option>
         @endforeach
     </select>
 

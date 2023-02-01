@@ -28,7 +28,6 @@
                         @method('PATCH')
 
                         <x-form.input name="title" :value="old('title', $post->title)"/>
-                        <x-form.input name="slug" :value="old('slug', $post->slug)"/>
                         <div class="flex mt-6">
                             <div class="flex-1">
                                 <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)"/>

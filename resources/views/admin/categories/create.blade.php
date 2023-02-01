@@ -4,7 +4,6 @@
             @csrf
 
             <x-form.input name="name"/>
-            <x-form.input name="slug"/>
 
             <x-form.button>Create</x-form.button>
         </form>
