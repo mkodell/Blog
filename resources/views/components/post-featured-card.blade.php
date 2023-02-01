@@ -30,6 +30,10 @@
                         </span>
                     @endif
 
+                    <span class="block text-gray-400 text-xs">
+                        {{ $post->comments->count() }} comments
+                    </span>
+
                 </div>
             </header>
 
