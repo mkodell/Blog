@@ -89,10 +89,9 @@ class AdminPostController extends Controller
         $post ??= new Post();
 
         return request()->validate([
-            'title' => 'required',
+            'title' => $post->exists ? ['required', Rule::unique('posts', 'title')->ignore($post)] : ['required', Rule::unique('posts', 'title')],
             'thumbnail' => $post->exists ? 'image|mimes:jpeg,jpg,png,svg' : 'required|image|mimes:jpeg,jpg,png,svg',
             'excerpt' => 'required',
-            'slug' => $post->exists ? ['required', Rule::unique('posts', 'slug')->ignore($post)] : ['required', Rule::unique('posts', 'slug')],
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'status' => 'required'

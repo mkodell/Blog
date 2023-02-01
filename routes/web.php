@@ -12,9 +12,9 @@ use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts/{post:title}', [PostController::class, 'show']);
 
-Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+Route::post('posts/{post:title}/comments', [PostCommentsController::class, 'store']);
 
 Route::patch('comments/{comment:id}', [CommentController::class, 'update']);
 Route::delete('comments/{comment:id}', [CommentController::class, 'destroy']);
