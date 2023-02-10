@@ -64,7 +64,7 @@
         <div class="mt-10">
             <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                <form method="POST" action="/newsletter/guestSubscribe" class="lg:flex text-sm">
                     @csrf
 
                     <div class="lg:py-3 lg:px-5 flex items-center">
@@ -87,8 +87,9 @@
 
                     </div>
 
-                    <button type="submit"
-                            class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
+                    <button
+                        type="submit"
+                        class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
                     >
                         Subscribe
                     </button>

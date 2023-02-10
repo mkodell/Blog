@@ -1,6 +1,6 @@
 {{-- TODO: subscription information can be selected/edited once the subscription service is further set up --}}
 
-<x-layout>
+<x-account-layout>
     <section class="py-8 max-w-2xl mx-auto">
         <div class="mb-8 pb-2 border-b flex justify-between">
             <div class="text-xl font-bold text-gray-900">
@@ -93,6 +93,36 @@
                                         </span>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                <h4>Subscription Status: </h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            Subscribed
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <form method="POST" action="/newsletter/unsubscribe">
+                                            @csrf
+                                            @method('POST')
+
+                                            <button class="text-sm text-red-400">Unsubscribe</button>
+                                        </form>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <form method="POST" action="/newsletter/userSubscribe">
+                                            @csrf
+                                            @method('POST')
+
+                                            <button class="text-sm text-blue-400">Subscribe</button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -101,4 +131,4 @@
             </div>
         </div>
     </section>
-</x-layout>
+</x-account-layout>
