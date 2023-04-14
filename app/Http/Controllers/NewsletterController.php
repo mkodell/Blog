@@ -8,12 +8,12 @@ use Illuminate\Validation\ValidationException;
 
 class NewsletterController extends Controller
 {
-    public function __invoke(Newsletter $newsletter)
+    public function guestSubscribe(Newsletter $newsletter)
     {
         request()->validate(['email' => 'required|email']);
 
         try {
-            $newsletter->subscribe(request('email'));
+            $newsletter->firstSubscribe(request('email'));
         } catch (Exception $e) {
             throw ValidationException::withMessages([
                 'email' => 'This email could not be added to our newsletter list.'
@@ -21,5 +21,53 @@ class NewsletterController extends Controller
         }
 
         return redirect('/')->with('success', 'You are now signed up to receive updates');
+    }
+
+    public function userResubscribe(Newsletter $newsletter)
+    {
+        $user = request()->user()->username;
+        $email = request()->user()->email;
+
+        try {
+            $newsletter->resubscribe($email);
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'email' => 'This email could not be added to our newsletter list.'
+            ]);
+        }
+
+        return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
+    }
+
+    public function unsubscribe(Newsletter $newsletter)
+    {
+        $user = request()->user()->username;
+        $email = request()->user()->email;
+
+        try {
+            $newsletter->unsubscribe($email);
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'user' => 'This email could not be removed from our newsletter list.'
+            ]);
+        }
+
+        return redirect('/account/' . $user)->with('success', 'You will no longer receive updates');
+    }
+
+    public function userNewSubscribe(Newsletter $newsletter)
+    {
+        $user = request()->user()->username;
+        $email = request()->user()->email;
+
+        try {
+            $newsletter->firstSubscribe($email);
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'email' => 'This email could not be added to our newsletter list.'
+            ]);
+        }
+
+        return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
     }
 }

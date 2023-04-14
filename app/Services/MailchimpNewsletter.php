@@ -13,7 +13,7 @@ class MailchimpNewsletter implements Newsletter
 
     /* TODO: functioning email for newsletter */
 
-    public function subscribe(string $email, string $list = null)
+    public function firstSubscribe(string $email, string $list = null)
     {
         $list ??= config('services.mailchimp.lists.subscribers');
 
@@ -21,6 +21,41 @@ class MailchimpNewsletter implements Newsletter
 
         return $this->client->lists->addListMember($list, [
             'email_address' => $email,
+            'status' => 'subscribed'
+        ]);
+    }
+
+    public function unsubscribe(string $email, string $list = null)
+    {
+        // $user = request()->user()->email;
+        $list ??= config('services.mailchimp.lists.subscribers');
+        $hash = md5(strtolower($email));
+
+        $mailchimp = new ApiClient();
+
+        return $this->client->lists->updateListMember($list, $hash, [
+            'status' => 'unsubscribed'
+        ]);
+    }
+
+    public function checkStatus(string $email, string $list = null)
+    {
+        $list ??= config('services.mailchimp.lists.subscribers');
+        $hash = md5(strtolower($email));
+
+        $mailchimp = new ApiClient();
+
+        return $this->client->lists->getListMember($list, $hash);
+    }
+
+    public function resubscribe(string $email, string $list = null)
+    {
+        $list ??= config('services.mailchimp.lists.subscribers');
+        $hash = md5(strtolower($email));
+
+        $mailchimp = new ApiClient();
+
+        return $this->client->lists->updateListMember($list, $hash, [
             'status' => 'subscribed'
         ]);
     }

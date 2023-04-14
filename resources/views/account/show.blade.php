@@ -1,5 +1,3 @@
-{{-- TODO: subscription information can be selected/edited once the subscription service is further set up --}}
-
 <x-account-layout>
     <section class="py-8 max-w-2xl mx-auto">
         <div class="mb-8 pb-2 border-b flex justify-between">
@@ -102,20 +100,20 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            Subscribed
+                                        <span class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium capitalize">
+                                            {{ $status }}
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <form method="POST" action="/newsletter/unsubscribe">
                                             @csrf
-                                            @method('POST')
+                                            @method('PATCH')
 
                                             <button class="text-sm text-red-400">Unsubscribe</button>
                                         </form>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <form method="POST" action="/newsletter/userSubscribe">
+                                        <form method="POST" action={{ $status == 'none' ? "/newsletter/userNewSubscribe" : "/newsletter/userResubscribe"}}>
                                             @csrf
                                             @method('POST')
 

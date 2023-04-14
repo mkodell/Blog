@@ -19,10 +19,14 @@ Route::post('posts/{post:title}/comments', [PostCommentsController::class, 'stor
 Route::patch('comments/{comment:id}', [CommentController::class, 'update']);
 Route::delete('comments/{comment:id}', [CommentController::class, 'destroy']);
 
-Route::post('newsletter', NewsletterController::class);
+Route::post('newsletter/guestSubscribe', [NewsletterController::class, 'guestSubscribe']);
+Route::post('newsletter/userNewSubscribe', [NewsletterController::class, 'userNewSubscribe']);
+Route::post('newsletter/userResubscribe', [NewsletterController::class, 'userResubscribe']);
+Route::patch('newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
 
 Route::get('account/{user:username}', [AccountController::class, 'show'])->middleware('auth');
 Route::get('account/{user:username}/edit', [AccountController::class, 'edit'])->middleware('auth');
