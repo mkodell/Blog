@@ -3,15 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Validation\Rule;
+use App\Services\Newsletter;
 
 class AccountController extends Controller
 {
-    public function show(User $user)
+    public function show(User $user, Newsletter $newsletter)
     {
-        return view('account.show', [
-            'user' => $user,
-        ]);
+        $email = request()->user()->email;
+
+        try {
+            $response = $newsletter->checkStatus($email);
+
+            return view('account.show', [
+                'user' => $user,
+                'status' => $response->status,
+            ]);
+        } catch (ClientException $e) {
+            return view('account.show', [
+                'user' => $user,
+                'status' => 'none',
+            ]);
+        }
     }
 
     public function edit(User $user)

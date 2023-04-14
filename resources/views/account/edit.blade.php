@@ -1,4 +1,4 @@
-<x-layout>
+<x-account-layout>
     <section class="py-8 max-w-2xl mx-auto">
         <h1 class="text-xl font-bold text-xl font-bold mb-8 pb-2 border-b">User Account</h1>
 
@@ -25,4 +25,4 @@
             </form>
         </x-panel>
     </section>
-</x-layout>
+</x-account-layout>

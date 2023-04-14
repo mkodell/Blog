@@ -1,4 +1,4 @@
-<x-layout>
+<x-account-layout>
     <section class="py-8 max-w-4xl mx-auto">
         <h1 class="text-xl font-bold mb-8 pb-2 border-b">Edit Post: {{ $post->title }}</h1>
 
@@ -70,4 +70,4 @@
             </main>
         </div>
     </section>
-</x-layout>
+</x-account-layout>
