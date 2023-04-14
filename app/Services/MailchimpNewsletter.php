@@ -11,8 +11,6 @@ class MailchimpNewsletter implements Newsletter
 
     }
 
-    /* TODO: functioning email for newsletter */
-
     public function firstSubscribe(string $email, string $list = null)
     {
         $list ??= config('services.mailchimp.lists.subscribers');
