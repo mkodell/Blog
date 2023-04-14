@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('admin.posts.index', [
             'posts' => Post::
@@ -18,12 +20,12 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('admin.posts.create');
     }
 
-    public function store(Post $post)
+    public function store(Post $post): RedirectResponse
     {
         $attributes = $this->validatePost($post);
 
@@ -46,14 +48,14 @@ class AdminPostController extends Controller
         return redirect('/admin/posts')->with('success', 'Post Created!');
     }
 
-    public function edit(Post $post)
+    public function edit(Post $post): View
     {
         return view('admin.posts.edit', [
             'post' => $post
         ]);
     }
 
-    public function update(Post $post)
+    public function update(Post $post): RedirectResponse
     {
         $attributes = $this->validatePost($post);
 
@@ -77,7 +79,7 @@ class AdminPostController extends Controller
         return redirect('/admin/posts')->with('success', 'Post Updated!');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
 

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Services\Newsletter;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
 class NewsletterController extends Controller
 {
-    public function guestSubscribe(Newsletter $newsletter)
+    public function guestSubscribe(Newsletter $newsletter): RedirectResponse
     {
         request()->validate(['email' => 'required|email']);
 
@@ -23,7 +24,7 @@ class NewsletterController extends Controller
         return redirect('/')->with('success', 'You are now signed up to receive updates');
     }
 
-    public function userResubscribe(Newsletter $newsletter)
+    public function userResubscribe(Newsletter $newsletter): RedirectResponse
     {
         $user = request()->user()->username;
         $email = request()->user()->email;
@@ -39,7 +40,7 @@ class NewsletterController extends Controller
         return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
     }
 
-    public function unsubscribe(Newsletter $newsletter)
+    public function unsubscribe(Newsletter $newsletter): RedirectResponse
     {
         $user = request()->user()->username;
         $email = request()->user()->email;
@@ -55,7 +56,7 @@ class NewsletterController extends Controller
         return redirect('/account/' . $user)->with('success', 'You will no longer receive updates');
     }
 
-    public function userNewSubscribe(Newsletter $newsletter)
+    public function userNewSubscribe(Newsletter $newsletter): RedirectResponse
     {
         $user = request()->user()->username;
         $email = request()->user()->email;

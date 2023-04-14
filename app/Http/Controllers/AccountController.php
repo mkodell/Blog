@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 use App\Services\Newsletter;
 
 class AccountController extends Controller
 {
-    public function show(User $user, Newsletter $newsletter)
+    public function show(User $user, Newsletter $newsletter): View
     {
         $email = request()->user()->email;
 
@@ -28,14 +30,14 @@ class AccountController extends Controller
         }
     }
 
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         return view('account.edit', [
             'user' => $user,
         ]);
     }
 
-    public function update(User $user)
+    public function update(User $user): RedirectResponse
     {
         $attributes = request()->validate([
             'name' => 'required',

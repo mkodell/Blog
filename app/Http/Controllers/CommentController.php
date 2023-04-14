@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Http\RedirectResponse;
 
 
 class CommentController extends Controller
 {
-    public function update(Comment $comment) {
+    public function update(Comment $comment): RedirectResponse
+    {
         $attributes = request()->validate([
             'body' => 'required',
         ]);
@@ -20,7 +22,8 @@ class CommentController extends Controller
         return back()->with('success', 'Comment Updated!');
     }
 
-    public function destroy(Comment $comment) {
+    public function destroy(Comment $comment): RedirectResponse
+    {
         $comment->delete();
 
         return back()->with('success', 'Comment Deleted!');
