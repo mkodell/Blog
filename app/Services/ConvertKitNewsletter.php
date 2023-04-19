@@ -19,4 +19,12 @@ class ConvertKitNewsletter implements Newsletter
     public function resubscribe(string $email, string $list = null) {
 
     }
+
+    public function listCampaigns() {
+
+    }
+
+    public function sendCampaign(string $campaign) {
+
+    }
 }

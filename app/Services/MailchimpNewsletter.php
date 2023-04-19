@@ -57,4 +57,18 @@ class MailchimpNewsletter implements Newsletter
             'status' => 'subscribed'
         ]);
     }
+
+    public function listCampaigns()
+    {
+        $mailchimp = new ApiClient();
+
+        return $this->client->campaigns->list();
+    }
+
+    public function sendCampaign(string $campaign): void
+    {
+        $mailchimp = new ApiClient();
+
+        $this->client->campaigns->send($campaign);
+    }
 }

@@ -11,4 +11,8 @@ interface Newsletter
     public function checkStatus(string $email, string $list = null);
 
     public function resubscribe(string $email, string $list = null);
+
+    public function listCampaigns();
+
+    public function sendCampaign(string $campaign);
 }

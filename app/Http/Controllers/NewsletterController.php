@@ -71,4 +71,30 @@ class NewsletterController extends Controller
 
         return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
     }
+
+    public function listCampaigns(Newsletter $newsletter)
+    {
+        try {
+            $response = $newsletter->listCampaigns();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        return View('admin.campaigns.index', [
+            'campaigns' => $response->campaigns
+        ]);
+    }
+
+    public function sendCampaign(Newsletter $newsletter, string $campaign): RedirectResponse
+    {
+        try {
+            $newsletter->sendCampaign($campaign);
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'user' => 'This email could not be removed from our newsletter list.'
+            ]);
+        }
+
+        return redirect('/newsletter/listCampaigns')->with('success', 'Campaign sent!');
+    }
 }
