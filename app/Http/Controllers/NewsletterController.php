@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\Newsletter;
 use Exception;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
@@ -31,10 +33,8 @@ class NewsletterController extends Controller
 
         try {
             $newsletter->resubscribe($email);
-        } catch (Exception $e) {
-            throw ValidationException::withMessages([
-                'email' => 'This email could not be added to our newsletter list.'
-            ]);
+        } catch (ClientException $e) {
+            throw $e;
         }
 
         return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
@@ -47,10 +47,8 @@ class NewsletterController extends Controller
 
         try {
             $newsletter->unsubscribe($email);
-        } catch (Exception $e) {
-            throw ValidationException::withMessages([
-                'user' => 'This email could not be removed from our newsletter list.'
-            ]);
+        } catch (ClientException $e) {
+            throw $e;
         }
 
         return redirect('/account/' . $user)->with('success', 'You will no longer receive updates');
@@ -63,10 +61,8 @@ class NewsletterController extends Controller
 
         try {
             $newsletter->firstSubscribe($email);
-        } catch (Exception $e) {
-            throw ValidationException::withMessages([
-                'email' => 'This email could not be added to our newsletter list.'
-            ]);
+        } catch (ClientException $e) {
+            throw $e;
         }
 
         return redirect('/account/' . $user)->with('success', 'You are now signed up to receive updates');
@@ -76,7 +72,7 @@ class NewsletterController extends Controller
     {
         try {
             $response = $newsletter->listCampaigns();
-        } catch (Exception $e) {
+        } catch (ClientException $e) {
             throw $e;
         }
 
@@ -87,12 +83,12 @@ class NewsletterController extends Controller
 
     public function sendCampaign(Newsletter $newsletter, string $campaign): RedirectResponse
     {
+
+
         try {
             $newsletter->sendCampaign($campaign);
-        } catch (Exception $e) {
-            throw ValidationException::withMessages([
-                'user' => 'This email could not be removed from our newsletter list.'
-            ]);
+        } catch (ClientException $e) {
+            throw $e;
         }
 
         return redirect('/newsletter/listCampaigns')->with('success', 'Campaign sent!');
@@ -102,12 +98,56 @@ class NewsletterController extends Controller
     {
         try {
             $newsletter->deleteCampaign($campaign);
-        } catch (Exception $e) {
-            throw ValidationException::withMessages([
-                'user' => 'This email could not be removed from our newsletter list.'
-            ]);
+        } catch (ClientException $e) {
+            throw $e;
         }
 
         return redirect('/newsletter/listCampaigns')->with('success', 'Campaign deleted!');
+    }
+
+    public function createCampaign(): View
+    {
+        return View('admin.campaigns.create');
+    }
+
+    public function storeCampaign(Newsletter $newsletter): RedirectResponse
+    {
+        $email = request()->user()->email;
+
+        $attributes = request()->validate([
+            'type' => 'required',
+            'title' => 'required',
+            'subject' => 'required',
+        ]);
+
+        try {
+            $newsletter->storeCampaign($attributes['type'], $attributes['subject'], $attributes['title'], $email);
+        } catch (ClientException $e) {
+            throw $e;
+        }
+
+        return redirect('/newsletter/listCampaigns')->with('success', 'Campaign created!');
+    }
+
+    public function storeCampaignContent(Newsletter $newsletter, string $campaign): RedirectResponse
+    {
+        $attributes = request()->validate([
+            'content' => 'required',
+        ]);
+
+        try {
+            $newsletter->storeCampaignContent($campaign, $attributes['content']);
+        } catch (ClientException $e) {
+            throw $e;
+        }
+
+        return redirect('/newsletter/listCampaigns')->with('success', 'Campaign content created!');
+    }
+
+    public function editCampaign(string $campaign): View
+    {
+        return View('admin.campaigns.edit', [
+            'campaign' => $campaign
+        ]);
     }
 }

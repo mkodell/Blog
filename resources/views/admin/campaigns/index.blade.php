@@ -39,14 +39,18 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/newsletter/sendCampaign/{{ $campaign->id }}">
-                                            @csrf
-                                            @method('POST')
+                                    @if ($campaign->status == 'save' || $campaign->status == 'paused')
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-xs font-medium">
+                                            <a href="/newsletter/editCampaign/{{ $campaign->id }}" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <form method="POST" action="/newsletter/sendCampaign/{{ $campaign->id }}">
+                                                @csrf
 
-                                            <button class="text-xs text-blue-400">Send</button>
-                                        </form>
-                                    </td>
+                                                <button class="text-xs text-blue-400">Send</button>
+                                            </form>
+                                        </td>
+                                    @endif
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST" action="/newsletter/deleteCampaign/{{ $campaign->id }}">
                                             @csrf

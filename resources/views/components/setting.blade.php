@@ -24,6 +24,9 @@
                 <li>
                     <a href="/admin/categories/create" class="{{ request()->is('admin/categories/create') ? 'text-blue-500' : ''}} ">New Category</a>
                 </li>
+                <li>
+                    <a href="/newsletter/createCampaign" class="{{ request()->is('newsletter/createCampaign') ? 'text-blue-500' : ''}} ">New Campaign</a>
+                </li>
             </ul>
         </aside>
         @endadmin

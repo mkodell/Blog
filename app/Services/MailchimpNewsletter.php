@@ -64,4 +64,27 @@ class MailchimpNewsletter implements Newsletter
     {
         $this->client->campaigns->remove($campaign);
     }
+
+    public function storeCampaign(string $type, string $subject, string $title, string $user): void
+    {
+        $list = config('services.mailchimp.lists.subscribers');
+
+        $this->client->campaigns->create(['type' => $type,
+            'recipients' => [
+                'list_id' => $list
+            ],
+            'settings' => [
+                'subject_line' => $subject,
+                'title' => $title,
+                'reply_to' => $user,
+            ],
+        ]);
+    }
+
+    public function storeCampaignContent(string $campaign, string $content): void
+    {
+        $this->client->campaigns->setContent($campaign, [
+            'plain_text' => $content
+        ]);
+    }
 }
