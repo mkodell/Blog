@@ -16,10 +16,16 @@
                     <a href="/admin/categories" class="{{ request()->is('admin/categories') ? 'text-blue-500' : ''}} ">All Categories</a>
                 </li>
                 <li>
+                    <a href="/newsletter/listCampaigns" class="{{ request()->is('newsletter/listCampaigns') ? 'text-blue-500' : ''}} ">All Campaigns</a>
+                </li>
+                <li>
                     <a href="/admin/posts/create" class="{{ request()->is('admin/posts/create') ? 'text-blue-500' : ''}} ">New Post</a>
                 </li>
                 <li>
                     <a href="/admin/categories/create" class="{{ request()->is('admin/categories/create') ? 'text-blue-500' : ''}} ">New Category</a>
+                </li>
+                <li>
+                    <a href="/newsletter/createCampaign" class="{{ request()->is('newsletter/createCampaign') ? 'text-blue-500' : ''}} ">New Campaign</a>
                 </li>
             </ul>
         </aside>
