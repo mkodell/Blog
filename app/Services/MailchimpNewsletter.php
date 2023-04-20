@@ -15,8 +15,6 @@ class MailchimpNewsletter implements Newsletter
     {
         $list ??= config('services.mailchimp.lists.subscribers');
 
-        $mailchimp = new ApiClient();
-
         return $this->client->lists->addListMember($list, [
             'email_address' => $email,
             'status' => 'subscribed'
@@ -29,8 +27,6 @@ class MailchimpNewsletter implements Newsletter
         $list ??= config('services.mailchimp.lists.subscribers');
         $hash = md5(strtolower($email));
 
-        $mailchimp = new ApiClient();
-
         return $this->client->lists->updateListMember($list, $hash, [
             'status' => 'unsubscribed'
         ]);
@@ -41,8 +37,6 @@ class MailchimpNewsletter implements Newsletter
         $list ??= config('services.mailchimp.lists.subscribers');
         $hash = md5(strtolower($email));
 
-        $mailchimp = new ApiClient();
-
         return $this->client->lists->getListMember($list, $hash);
     }
 
@@ -51,8 +45,6 @@ class MailchimpNewsletter implements Newsletter
         $list ??= config('services.mailchimp.lists.subscribers');
         $hash = md5(strtolower($email));
 
-        $mailchimp = new ApiClient();
-
         return $this->client->lists->updateListMember($list, $hash, [
             'status' => 'subscribed'
         ]);
@@ -60,15 +52,16 @@ class MailchimpNewsletter implements Newsletter
 
     public function listCampaigns()
     {
-        $mailchimp = new ApiClient();
-
         return $this->client->campaigns->list();
     }
 
     public function sendCampaign(string $campaign): void
     {
-        $mailchimp = new ApiClient();
-
         $this->client->campaigns->send($campaign);
+    }
+
+    public function deleteCampaign(string $campaign): void
+    {
+        $this->client->campaigns->remove($campaign);
     }
 }

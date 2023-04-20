@@ -23,11 +23,21 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                {{ $campaign->id }}
-                                            </div>
-                                        </div>
+                                        @if ($campaign->status == 'save' || $campaign->status == 'schedule')
+                                            <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                Draft
+                                            </span>
+                                        @elseif ($campaign->status == 'paused')
+                                            <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                Paused
+                                            </span>
+                                        @else
+                                            <span class="px-2 inline-fex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                @if ($campaign->status == 'sending') Sending
+                                                @else Sent
+                                                @endif
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <form method="POST" action="/newsletter/sendCampaign/{{ $campaign->id }}">
@@ -35,6 +45,14 @@
                                             @method('POST')
 
                                             <button class="text-xs text-blue-400">Send</button>
+                                        </form>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <form method="POST" action="/newsletter/deleteCampaign/{{ $campaign->id }}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="text-xs text-red-400">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

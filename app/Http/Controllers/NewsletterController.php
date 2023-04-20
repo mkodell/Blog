@@ -97,4 +97,17 @@ class NewsletterController extends Controller
 
         return redirect('/newsletter/listCampaigns')->with('success', 'Campaign sent!');
     }
+
+    public function deleteCampaign(Newsletter $newsletter, string $campaign): RedirectResponse
+    {
+        try {
+            $newsletter->deleteCampaign($campaign);
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'user' => 'This email could not be removed from our newsletter list.'
+            ]);
+        }
+
+        return redirect('/newsletter/listCampaigns')->with('success', 'Campaign deleted!');
+    }
 }

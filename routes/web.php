@@ -25,6 +25,7 @@ Route::post('newsletter/userResubscribe', [NewsletterController::class, 'userRes
 Route::patch('newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe'])->middleware('auth');
 Route::get('newsletter/listCampaigns', [NewsletterController::class, 'listCampaigns'])->middleware('auth');
 Route::post('newsletter/sendCampaign/{campaign}', [NewsletterController::class, 'sendCampaign'])->middleware('auth');
+Route::delete('newsletter/deleteCampaign/{campaign}', [NewsletterController::class, 'deleteCampaign'])->middleware('auth');
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');

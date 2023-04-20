@@ -15,4 +15,6 @@ interface Newsletter
     public function listCampaigns();
 
     public function sendCampaign(string $campaign);
+
+    public function deleteCampaign(string $campaign);
 }

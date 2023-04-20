@@ -27,4 +27,8 @@ class ConvertKitNewsletter implements Newsletter
     public function sendCampaign(string $campaign) {
 
     }
+
+    public function deleteCampaign(string $campaign) {
+
+    }
 }
