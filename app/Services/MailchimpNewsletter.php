@@ -23,7 +23,6 @@ class MailchimpNewsletter implements Newsletter
 
     public function unsubscribe(string $email, string $list = null)
     {
-        // $user = request()->user()->email;
         $list ??= config('services.mailchimp.lists.subscribers');
         $hash = md5(strtolower($email));
 

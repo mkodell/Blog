@@ -104,7 +104,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <form method="POST" action="/account/{{ $user->email }}/newsletter/unsubscribe">
+                                <form method="POST" action="/account/newsletter/unsubscribe">
                                     @csrf
                                     @method('PATCH')
 

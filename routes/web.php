@@ -33,7 +33,7 @@ Route::patch('account/{user:username}', [AccountController::class, 'update'])->m
 
 Route::post('account/newsletter', [AccountNewsletterController::class, 'newSubscribe'])->middleware('auth');
 Route::post('account/newsletter/resubscribe', [AccountNewsletterController::class, 'resubscribe'])->middleware('auth');
-Route::patch('account/newsletter', [AccountNewsletterController::class, 'unsubscribe'])->middleware('auth');
+Route::patch('account/newsletter/unsubscribe', [AccountNewsletterController::class, 'unsubscribe'])->middleware('auth');
 
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
