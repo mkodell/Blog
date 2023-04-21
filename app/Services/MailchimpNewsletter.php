@@ -49,42 +49,4 @@ class MailchimpNewsletter implements Newsletter
             'status' => 'subscribed'
         ]);
     }
-
-    public function listCampaigns()
-    {
-        return $this->client->campaigns->list();
-    }
-
-    public function sendCampaign(string $campaign): void
-    {
-        $this->client->campaigns->send($campaign);
-    }
-
-    public function deleteCampaign(string $campaign): void
-    {
-        $this->client->campaigns->remove($campaign);
-    }
-
-    public function storeCampaign(string $type, string $subject, string $title, string $user): void
-    {
-        $list = config('services.mailchimp.lists.subscribers');
-
-        $this->client->campaigns->create(['type' => $type,
-            'recipients' => [
-                'list_id' => $list
-            ],
-            'settings' => [
-                'subject_line' => $subject,
-                'title' => $title,
-                'reply_to' => $user,
-            ],
-        ]);
-    }
-
-    public function storeCampaignContent(string $campaign, string $content): void
-    {
-        $this->client->campaigns->setContent($campaign, [
-            'plain_text' => $content
-        ]);
-    }
 }
