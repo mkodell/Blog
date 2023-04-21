@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Services\MailchimpCampaign;
 use App\Services\MailchimpNewsletter;
+use App\Services\Campaign;
 use App\Services\Newsletter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
@@ -27,6 +29,15 @@ class AppServiceProvider extends ServiceProvider
             ]);
 
             return new MailchimpNewsletter($client);
+        });
+
+        app()->bind(Campaign::class, function () {
+            $client = (new ApiClient)->setConfig([
+                'apiKey' => config('services.mailchimp.key'),
+                'server' => 'us14'
+            ]);
+
+            return new MailchimpCampaign($client);
         });
     }
 
