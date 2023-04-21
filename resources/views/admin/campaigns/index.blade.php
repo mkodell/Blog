@@ -41,10 +41,10 @@
                                     </td>
                                     @if ($campaign->status == 'save' || $campaign->status == 'paused')
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-xs font-medium">
-                                            <a href="/newsletter/editCampaign/{{ $campaign->id }}" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                            <a href="admin/campaigns/{{ $campaign->id }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" action="/newsletter/sendCampaign/{{ $campaign->id }}">
+                                            <form method="POST" action="/admin/campaigns/{{ $campaign->id }}">
                                                 @csrf
 
                                                 <button class="text-xs text-blue-400">Send</button>
@@ -52,7 +52,7 @@
                                         </td>
                                     @endif
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/newsletter/deleteCampaign/{{ $campaign->id }}">
+                                        <form method="POST" action="/admin/campaigns/{{ $campaign->id }}">
                                             @csrf
                                             @method('DELETE')
 

@@ -1,6 +1,6 @@
 <x-account-layout>
     <x-setting heading="Add Campaign Content">
-        <form method="POST" action="/newsletter/storeCampaignContent/{{ $campaign }}" enctype="multipart/form-data">
+        <form method="POST" action="/admin/campaigns/{{ $campaign }}/content" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

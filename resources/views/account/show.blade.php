@@ -104,7 +104,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <form method="POST" action="/newsletter/unsubscribe">
+                                <form method="POST" action="/account/{{ $user->email }}/newsletter/unsubscribe">
                                     @csrf
                                     @method('PATCH')
 
@@ -112,7 +112,7 @@
                                 </form>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <form method="POST" action={{ $status == 'none' ? "/newsletter/userNewSubscribe" : "/newsletter/userResubscribe"}}>
+                                <form method="POST" action={{ $status == 'none' ? "/account/newsletter" : "/account/newsletter/resubscribe"}}>
                                     @csrf
 
                                     <button class="text-sm text-blue-400">Subscribe</button>

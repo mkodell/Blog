@@ -1,6 +1,6 @@
 <x-account-layout>
     <x-setting heading="Create A New Campaign">
-        <form method="POST" action="/newsletter/storeCampaign" enctype="multipart/form-data">
+        <form method="POST" action="/admin/campaigns" enctype="multipart/form-data">
         @csrf
 
             <x-form.section>
